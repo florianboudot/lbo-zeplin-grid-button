@@ -6,4 +6,4 @@
 - click `load unpacked` and select the folder of the repo on your local hard drive
 
 ## How to edit
-Same as above but when you make changes, come to chrome://extensions and hit the reload button of this extension
+Same as above but when you make changes, come to chrome://extensions and hit the reload button of this extension and reload the page you want to extend.

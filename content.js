@@ -20,18 +20,25 @@ function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeout
 
 
 waitForElementToDisplay(".tabContent",function(){
-    const container = document.getElementsByClassName('snapshotDetail');
-    const sidebar = document.getElementsByClassName('headerRight');
+    const container = document.getElementsByClassName('snapshotDetail')[0];
+    const sidebar = document.getElementsByClassName('headerRight')[0];
     
     let toggleContainer = document.createElement("div")
-    sidebar[0].appendChild(toggleContainer); 
+    sidebar.appendChild(toggleContainer); 
     toggleContainer.innerText="LBO grid 👋";
 
     toggleContainer.classList.add("lbo-grid-button");
-    container[0].classList.add("lbo-grid");
+    container.classList.add("lbo-grid-common");
 
     toggleContainer.addEventListener("click", function() {
-        container[0].classList.toggle('lbo-grid');
+      console.log(container.offsetWidth)
+        if(container.offsetWidth === 1086) {
+          container.classList.toggle('lbo-grid-desktop');
+        } else if (container.offsetWidth === 768) {
+          container.classList.toggle('lbo-grid-tablet');
+        } else if (container.offsetWidth === 320) {
+          container.classList.toggle('lbo-grid-mobile');
+        }
     }, false);
     
 },500,9000);

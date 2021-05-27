@@ -1,24 +1,53 @@
 
-/* Settings */
-:root {
-  --offset: 33px;
-  --max_width: 1086px;
-  --columns: 12;
-  --gutter: 24px;
-  --color: hsla(204, 80%, 72%, 0.25);
-}
 
 /* Helper variables */
 :root {
-  --repeating-width: calc(100% / var(--columns));
-  --column-width: calc((100% / var(--columns)) - var(--gutter));
-  --background-width: calc(100% + var(--gutter));
-  --background-columns: repeating-linear-gradient(
+  --color: hsla(204, 80%, 72%, 0.25);
+
+  --mobile-offset: 16px;
+  --mobile-columns: 4;
+  --mobile-gutter: 16px;
+  
+  --tablet-offset: 40px;
+  --tablet-columns: 8;
+  --tablet-gutter: 16px;
+
+  --desktop-offset: 33px;
+  --desktop-columns: 12;
+  --desktop-gutter: 24px;
+
+
+  --mobile-repeating-width: calc(100% / var(--mobile-columns));
+  --mobile-column-width: calc((100% / var(--mobile-columns)) - var(--mobile-gutter));
+  --mobile-background-width: calc(100% + var(--mobile-gutter));
+  --mobile-background-columns: repeating-linear-gradient(
     to right,
     var(--color),
-    var(--color) var(--column-width),
-    transparent var(--column-width),
-    transparent var(--repeating-width)
+    var(--color) var(--mobile-column-width),
+    transparent var(--mobile-column-width),
+    transparent var(--mobile-repeating-width)
+  );
+  
+  --tablet-repeating-width: calc(100% / var(--tablet-columns));
+  --tablet-column-width: calc((100% / var(--tablet-columns)) - var(--tablet-gutter));
+  --tablet-background-width: calc(100% + var(--tablet-gutter));
+  --tablet-background-columns: repeating-linear-gradient(
+    to right,
+    var(--color),
+    var(--color) var(--tablet-column-width),
+    transparent var(--tablet-column-width),
+    transparent var(--tablet-repeating-width)
+  );
+  
+  --desktop-repeating-width: calc(100% / var(--desktop-columns));
+  --desktop-column-width: calc((100% / var(--desktop-columns)) - var(--desktop-gutter));
+  --desktop-background-width: calc(100% + var(--desktop-gutter));
+  --desktop-background-columns: repeating-linear-gradient(
+    to right,
+    var(--color),
+    var(--color) var(--desktop-column-width),
+    transparent var(--desktop-column-width),
+    transparent var(--desktop-repeating-width)
   );
 }
 .lbo-grid-button {
@@ -32,18 +61,30 @@
     background: #ff6e14;
 }
 
-.lbo-grid::before {
+.lbo-grid-common::before {
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
   margin-right: auto;
-  margin-left: auto;
-  width: calc(100% - (2 * var(--offset)));
-  /* max-width: var(--max_width); */
-  min-height: 100vh;
   content: '';
-  background-image: var(--background-columns);  
-  background-size: var(--background-width) 100%;
+  margin-left: auto;
   z-index: 1000;
   pointer-events: none;
+  min-height: 100vh;
+  /* max-width: var(--max_width); */
+}
+.lbo-grid-mobile::before {
+  width: calc(100% - (2 * var(--mobile-offset)));
+  background-image: var(--mobile-background-columns);  
+  background-size: var(--mobile-background-width) 100%;
+}
+.lbo-grid-tablet::before {
+  width: calc(100% - (2 * var(--tablet-offset)));
+  background-image: var(--tablet-background-columns);  
+  background-size: var(--tablet-background-width) 100%;
+}
+.lbo-grid-desktop::before {   
+  width: calc(100% - (2 * var(--desktop-offset)));
+  background-image: var(--desktop-background-columns);  
+  background-size: var(--desktop-background-width) 100%;
 }
 
